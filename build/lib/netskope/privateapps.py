@@ -193,13 +193,14 @@ class privateapps(netskope.nss):
 
    # *** Helper Methods ***
 
-    def get_id(self, objpath, *, key="", value="", include_path=False):
+    def get_id(self, objpath, *, objecttype="", key="", value="", include_path=False):
         '''
         Get object id using key/value pair
 
         Parameters:
             objpath (str):  Swagger object path
-            key (str):      name of key to match
+            objecttype (str): Object type e.g. private_apps, private_app_tags
+            key (str):      name of key to match e.g. app_name, host
             value (str):    value to match
             include_path (bool): Include path to object id
 
@@ -207,36 +208,32 @@ class privateapps(netskope.nss):
             id (str):   object id or ""
         '''
 
-        # Local Variables
-        id = ""
-        filter = key+'=="'+value+'"'
-        fields = key + ',id'
-
         # Make API Call
-        response = self.get(objpath, _filter=filter, _fields=fields)
+        response = self.get(objpath)
 
         # Process response
         if response.status_code in self.return_codes_ok:
-            obj = response.json()
-            # Look for results
-            if "results" in obj.keys():
-                obj = obj['results']
-                if obj:
-                    id = obj[0]['id']
-                    if not include_path:
-                        id = id.rsplit('/',1)[1]
-                else:
-                    logging.debug("Key {} with value {} not found."
-                                  .format(key,value))
+            json_data = json.loads(response.text)
+            # Look for data 
+            if objecttype is 'private_apps' or objecttype is 'tags':
+                for app in json_data["data"][objecttype]:
+                    app_id = app["app_id"]
+                    app_name = app["app_name"]
+                    host = app["host"]
+                    if key is 'app_name' and app_name in value:
+                        id = app_id
+                    elif key is 'host' and host in value:
+                        id = app_id
+                    else:
+                        logging.debug("Key {} with value {} not found."
+                                  .format(key,value))                        
             else:
-                id = ""
-                logging.debug("No results found.")
+                logging.debug("Object Type " + objecttype + " not supported.")
         else:
             id=""
             logging.debug("HTTP Error occured. {}".format(response.status_code))
 
         logging.debug("id: {}".format(id)) 
-
         return id
 
 
