@@ -215,14 +215,14 @@ class privateapps(netskope.nss):
         if response.status_code in self.return_codes_ok:
             json_data = json.loads(response.text)
             # Look for data 
-            if objecttype is 'private_apps' or objecttype is 'tags':
+            if objecttype == 'private_apps' or objecttype == 'tags':
                 for app in json_data["data"][objecttype]:
                     app_id = app["app_id"]
                     app_name = app["app_name"]
                     host = app["host"]
-                    if key is 'app_name' and app_name in value:
+                    if key == 'app_name' and app_name in value:
                         id = app_id
-                    elif key is 'host' and host in value:
+                    elif key == 'host' and host in value:
                         id = app_id
                     else:
                         logging.debug("Key {} with value {} not found."

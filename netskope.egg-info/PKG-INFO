@@ -1,14 +1,14 @@
 Metadata-Version: 2.1
-Name: bloxone
+Name: netskope
 Version: 0.0.1
 Summary: Netskope API Wrapper Module
 Home-page: https://github.com/neerdael-nl/python-netskope
 Author: John Neerdael
 Author-email: jneerdael@netskope.com
 License: BSD-2-Clause
-Project-URL: Documentation, https://python-bloxone.readthedocs.io/en/latest/
-Project-URL: Source, https://github.com/ccmarris/python-bloxone
-Project-URL: Tracker, https://github.com/ccmarris/python-bloxone/issues
+Project-URL: Documentation, https://python-netskope.readthedocs.io/en/latest/
+Project-URL: Source, https://github.com/neerdael-nl/python-netskope
+Project-URL: Tracker, https://github.com/neerdael-nl/python-netskope/issues
 Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: BSD License
 Classifier: Operating System :: OS Independent
@@ -16,12 +16,12 @@ Requires-Python: >=3.7
 Description-Content-Type: text/x-rst
 License-File: LICENSE
 
-=============
+============
 Introduction
 ============
 
 The Netskope module which provides a RESTful API that is
-published using Swagger on "https://<TENANT>.goskope.com/apidocs/" along with other
+published using Swagger on https://<TENANT>.goskope.com/apidocs/ along with other
 Netskope APIs.
 
 This module aims to provide a class hierarchy to simplify access to these

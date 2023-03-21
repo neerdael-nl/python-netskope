@@ -1,12 +1,11 @@
 import setuptools
-from netskope import __version__
 
 with open("README.rst", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="netskope", 
-    version=__version__,
+    version="0.0.1",
     author="John Neerdael",
     author_email="jneerdael@netskope.com",
     description="Netskope API Wrapper Module",
@@ -27,7 +26,7 @@ setuptools.setup(
     ],
     python_requires='>=3.7',
     install_requires=[ 'requests', 'pyyaml' ],
-    package_data={'bloxone':['documentation/*', 'README.rst', 'LICENSE', 'config.ini', 'CHANGELOG.rst']},
+    package_data={'netskope':['documentation/*', 'README.rst', 'LICENSE', 'config.ini', 'CHANGELOG.rst']},
     # data_files=['CHANGELOG.rst','README.rst','LICENSE'],
     include_package_data=True
 ) 
