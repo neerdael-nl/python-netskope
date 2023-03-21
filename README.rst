@@ -3,7 +3,7 @@ Introduction
 ============
 
 The Netskope module which provides a RESTful API that is
-published using Swagger on https://john.eu.goskope.com/apidocs/?include_beta_routes=0#/ along with other
+published using Swagger on https://<TENANT>.goskope.com/apidocs/ along with other
 Netskope APIs.
 
 This module aims to provide a class hierarchy to simplify access to these
